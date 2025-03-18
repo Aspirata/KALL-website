@@ -84,6 +84,14 @@ button.detail:hover {
     background: linear-gradient(45deg, #2575fc, #6a11cb);
 }
 
+/* Контейнер с карточками */
+.rig-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 350px)); /* Минимум 200px, максимум 350px */
+    gap: 1rem; /* Уменьшенные отступы */
+    margin: 2rem 0;
+}
+
 /* Карточки ригов */
 .rig-card {
     background: #2a2a2a;
