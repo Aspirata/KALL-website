@@ -1,182 +1,205 @@
-/* Основные настройки */
 body {
-    font-family: 'Inter', Arial, sans-serif;
-    margin: 0;
-    padding: 2rem;
-    scroll-behavior: smooth;
-    background: #1a1a1a;
-    color: #f5f5f5;
-    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: #121212;
+    color: #e0e0e0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    position: relative;
 }
 
-/* Шрифты */
 h1 {
     font-size: 2.5rem;
-    line-height: 1.2;
-    color: #e0e0e0;
+    color: #f0f0f0;
 }
 
-h3 {
-    font-size: 1.25rem;
-    color: #ffffff;
-}
-
-p {
-    font-size: 1rem;
-    color: #c4c4c4;
-    line-height: 1.6;
-}
-
-/* Головная часть */
 header {
-    padding: 2rem;
     text-align: center;
-    background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+    padding: 3rem;
+    background: linear-gradient(45deg, #1e3a8a, #047857);
+    border-radius: 0 0 20px 20px;
+    position: relative;
+}
+
+#aboutButton {
+    position: absolute;
+    top: 20%;
+    right: 4%;
+    background-color: #1f2937;
+    color: white;
+    padding: 25px 40px;
+    font-size: 1.25rem;
+    font-weight: bold;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-}
-
-header h1 {
-    margin: 0;
-    font-weight: 700;
-}
-
-/* Кнопки */
-.btn, button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    cursor: pointer;
     transition: all 0.3s ease;
-    border: none;
-    margin: 0.5rem;
+}
+
+#aboutButton:hover {
+    background-color: #374151;
 }
 
 .btn {
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-    color: #ffffff;
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.download {
+    width: 100%; /* Растягиваем кнопку "Скачать" по ширине */
+    padding: 8px;
+    text-align: center;
+    background: linear-gradient(45deg, #10b981, #34d399);
+}
+
+.cretor {
+    width: 100%; /* Растягиваем кнопку "Скачать" по ширине */
+    padding: 8px;
+    text-align: center;
+    background: linear-gradient(45deg, #10b981, #34d399);
 }
 
 .btn:hover {
-    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    transform: scale(1.05);
 }
 
-button.download {
-    background: linear-gradient(45deg, #16a34a, #06d6a0);
-}
-
-button.download:hover {
-    background: linear-gradient(45deg, #06d6a0, #16a34a);
-}
-
-button.detail {
-    background: linear-gradient(45deg, #6a11cb, #2575fc);
-}
-
-button.detail:hover {
-    background: linear-gradient(45deg, #2575fc, #6a11cb);
-}
-
-/* Контейнер с карточками */
 .rig-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 350px)); /* Минимум 200px, максимум 350px */
-    gap: 1rem; /* Уменьшенные отступы */
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px; /* Уменьшено расстояние между карточками */
+    justify-content: center;
+    padding: 20px;
 }
 
-/* Карточки ригов */
+/* Карточка рига */
 .rig-card {
-    background: #2a2a2a;
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 1.5rem 0;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    animation: fadeIn 0.5s ease-in-out;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
 }
 
 .rig-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(31, 38, 135, 0.5);
+}
+
+.popular {
+    border: 3px solid gold;
+    position: relative;
+}
+
+.popular-label {
+    position: absolute;
+    top: -5px; /* Поднимаем над карточкой */
+    left: -5px; /* Смещаем влево */
+    background: gold;
+    color: black;
+    font-weight: bold;
+    font-size: 0.95rem;
+    padding: 6px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
 }
 
 .rig-image {
     width: 100%;
-    height: 250px;
-    border-radius: 10px;
+    height: 200px;
     object-fit: cover;
-    margin-bottom: 1.5rem;
-    transition: transform 0.3s ease;
 }
 
-.rig-image:hover {
-    transform: scale(1.05);
+.rig-description {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-/* Блок с кнопками */
-.rig-buttons {
+.tags {
+    margin-top: 10px;
     display: flex;
-    gap: 1rem;
-    margin: 1.5rem 0;
+    flex-wrap: wrap;
+    gap: 8px; /* Уменьшено расстояние между тегами */
 }
 
-button + button {
-    margin-left: 1rem;
-}
-
-/* Теги */
 .tag {
-    background: #333333;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 12px;
+    background: #374151;
+    color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 8px;
     font-size: 0.85rem;
-    margin: 0.3rem;
-    display: inline-block;
-    transition: transform 0.2s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
 }
 
 .tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* Легкий эффект при наведении */
 }
 
-/* Анимация появления */
-@keyframes fadeIn {
-    from { 
-        opacity: 0;
-        transform: translateY(30px); 
-    }
-    to { 
-        opacity: 1;
-        transform: translateY(0); 
-    }
+/* Добавление стиля для устаревшего тега */
+.tag-popular {
+    background-color: #f0a500;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .rig-card {
-        padding: 1.5rem;
-    }
-    
-    .rig-image {
-        height: 200px;
-    }
-    
-    .rig-buttons {
-        flex-direction: column;
-    }
-    
-    button {
-        width: 100%;
-        margin-bottom: 1rem;
-    }
+.tag-outdated {
+    background-color: #e74c3c;
+}
+
+.tag-realistic {
+    background-color: #4caf50;
+}
+
+.tag-simple {
+    background-color: #00bcd4;
+}
+
+/* Появление описания тега */
+.tag-expanded::after {
+    content: attr(data-description);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    max-width: 250px;
+    white-space: normal; /* Описание теперь может занимать несколько строк */
+    text-align: center;
+    display: block;
+}
+
+/* Плавный переход для появления панели с пояснением тега */
+.tag-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    max-width: 500px;
+    z-index: 1000;
+}
+
+.tag-popup p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Затемнение фона при открытой панели */
+.tag-popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
 }
