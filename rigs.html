@@ -7,21 +7,86 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1.2">
+    <style>
+        /* Стили навигации */
+        .nav-container {
+            position: relative;
+            display: flex;
+            gap: 20px;
+            padding-bottom: 6px;
+        }
+
+        .nav-item {
+            position: relative;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 15px;
+        }
+
+        /* Двигающаяся линия */
+        .nav-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s ease-in-out;
+            width: 0;
+            left: 0;
+        }
+
+        /* Обёртка навигации */
+        .nav-wrapper {
+            position: relative;
+        }
+
+        /* Стиль для активной страницы */
+        .nav-item.active .nav-link {
+            font-weight: 700;
+            color: white;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen">
-    <header class="bg-gradient-to-r from-blue-600 to-green-500 py-10 px-6 text-center">
+    <header class="bg-gradient-to-r from-blue-600 to-green-500 py-6 px-6 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold drop-shadow-lg">КАЛЛ</h1>
+
+            <!-- Навигация -->
+            <nav class="relative nav-wrapper">
+                <div class="nav-container text-lg flex space-x-8">
+                    <a href="index.html" class="nav-item" data-page="index">
+                        <span class="nav-link">Главная</span>
+                    </a>
+                    <a href="rigs.html" class="nav-item active" data-page="rigs">
+                        <span class="nav-link">Список Ригов</span>
+                    </a>
+                    <a href="https://github.com/ТВОЙ_РЕПОЗИТОРИЙ/issues/new?template=rig_submission.md" 
+                        target="_blank" 
+                        class="inline-flex items-center px-5 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Предложить Риг
+                    </a>
+
+                </div>
+                <div class="nav-indicator"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="py-16">
         <div class="max-w-5xl mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold text-white">Список Ригов</h1>
             <input type="text" id="searchInput" placeholder="Поиск по назвнию и тегам..." 
                    class="mt-6 px-4 py-2 bg-gray-800 text-white border border-gray-600 rounded-full w-full md:w-1/2 mx-auto focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
         </div>
-        <a href="about.html" id="aboutButton" class="absolute top-4 right-4 bg-gray-700 text-white py-4 px-8 text-xl font-bold rounded-full hover:bg-gray-600 transition-all text-right">
-            О Сайте
-        </a>
-    </header>
-    <main class="py-16">
-        <div class="rig-container">
-            <!-- Карточки генерируются через JS -->
+        <div class="rig-container mt-8">
+            <!-- Карточки ригов генерируются через JS -->
         </div>
     </main>
 
@@ -38,6 +103,36 @@
             <p>© 2077 KALL. Все права не защищены.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navIndicator = document.querySelector(".nav-indicator");
+            const navItems = document.querySelectorAll(".nav-item");
+
+            function updateIndicator(element) {
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const parentRect = element.parentElement.getBoundingClientRect();
+                    navIndicator.style.width = `${rect.width}px`;
+                    navIndicator.style.left = `${rect.left - parentRect.left}px`;
+                }
+            }
+
+            // Устанавливаем полоску под активный пункт
+            const activeItem = document.querySelector(".nav-item.active");
+            updateIndicator(activeItem);
+
+            // Двигаем полоску при наведении
+            navItems.forEach(item => {
+                item.addEventListener("mouseenter", () => updateIndicator(item));
+            });
+
+            // Возвращаем полоску на активный элемент
+            document.querySelector(".nav-wrapper").addEventListener("mouseleave", () => {
+                updateIndicator(activeItem);
+            });
+        });
+    </script>
     <script src="js/script.js?v=1.5"></script>
 </body>
 </html>

@@ -7,45 +7,148 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css?v=1.2">
+    <style>
+        /* Стили навигации */
+        .nav-container {
+            position: relative;
+            display: flex;
+            gap: 20px;
+            padding-bottom: 6px;
+        }
+
+        .nav-item {
+            position: relative;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 15px;
+        }
+
+        /* Двигающаяся линия */
+        .nav-indicator {
+            position: absolute;
+            bottom: -2px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s ease-in-out;
+            width: 0;
+            left: 0;
+        }
+
+        /* Обёртка навигации */
+        .nav-wrapper {
+            position: relative;
+        }
+
+        /* Стиль для активной страницы */
+        .nav-item.active .nav-link {
+            font-weight: 700;
+            color: white;
+        }
+
+    </style>
 </head>
 <body class="bg-gray-900 text-white flex flex-col min-h-screen">
-    <header class="bg-gradient-to-r from-blue-600 to-green-500 py-10 px-6 text-center shadow-lg">
-        <div class="max-w-5xl mx-auto">
-            <h1 class="text-5xl font-bold">О KALL</h1>
-            <p class="text-xl mt-4 opacity-80">Коллекция Анимированных Личностей для Minecraft и Blender</p>
-            <a href="index.html" class="mt-6 inline-block px-6 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-md hover:bg-blue-600 hover:text-white transition">На главную</a>
+    
+    <header class="bg-gradient-to-r from-blue-600 to-green-500 py-6 px-6 shadow-lg">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold drop-shadow-lg">КАЛЛ</h1>
+
+            <!-- Навигация -->
+            <nav class="relative nav-wrapper">
+                <div class="nav-container text-lg flex space-x-8">
+                    <a href="index.html" class="nav-item" data-page="index">
+                        <span class="nav-link">Главная</span>
+                    </a>
+                    <a href="rigs.html" class="nav-item" data-page="rigs">
+                        <span class="nav-link">Риги</span>
+                    </a>
+                    <a href="about.html" class="nav-item active" data-page="about">
+                        <span class="nav-link">О сайте</span>
+                    </a>
+                    <a href="https://github.com/ТВОЙ_РЕПОЗИТОРИЙ/issues/new?template=rig_submission.md" 
+                        target="_blank" 
+                        class="inline-flex items-center px-5 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-green-500 hover:bg-green-600">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Предложить риг
+                    </a>
+
+                </div>
+                <div class="nav-indicator"></div>
+            </nav>
         </div>
     </header>
+
     <main class="flex-grow">
         <section class="py-16 bg-gray-800 text-center px-6">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold mb-6">Что такое KALL?</h2>
+                <h2 class="text-3xl font-bold mb-6 text-blue-400">Что такое КАЛЛ ?</h2>
                 <p class="text-gray-300 leading-relaxed text-lg">
-                    KALL — это уникальная платформа, где собраны лучшие риги для персонажей Minecraft, специально адаптированные для Blender. 
-                    Мы стремимся сделать анимацию доступной, удобной и качественной.
+                    <span class="text-white font-semibold">КАЛЛ</span> — это платформа, где можно легко найти идеальный риг для своих проектов. 
+                    Также мы поддерживаем новые или малоизвестные риги.
                 </p>
             </div>
         </section>
+
         <section class="py-16 bg-gray-900 text-center px-6">
             <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10">
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold mb-4">Наши цели</h3>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-4 text-yellow-400">Почему именно КАЛЛ ?</h3>
                     <p class="text-gray-300">
-                        Я хочу создать место, где каждый сможет найти идеальный риг для своих проектов, а также популяризировать недавно вышедшие или малопопулярные риги.
-                    </p>
-                </div>
-                <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-                    <h3 class="text-2xl font-bold mb-4">Почему КАЛЛ ?</h3>
-                    <p class="text-gray-300">
-                        Потому что этот сайт не позиционируется как что-то серьёзное и официальное, а ещё он на 95% написан ChatGPT.
+                        Потому что этот сайт не пытается быть серьёзным и официальным.  
+                        А ещё он на <span class="text-white font-semibold">95%</span> написан ChatGPT.
                     </p>
                 </div>
             </div>
-            
         </section>
+        
+        <div class="max-w-4xl mx-auto mt-16 border-t border-gray-700"></div>
     </main>
-    <footer class="bg-gray-800 text-center py-6 text-gray-400">
-        <p>© 2077 KALL. Все права не защищены.</p>
+
+    <footer class="bg-gray-800 text-center py-8 text-gray-400">
+        <p class="mb-4">© 2077 КАЛЛ. Все права не защищены.</p>
+        <p>
+            <a href="https://github.com/Aspirata/KALL-website" target="_blank"
+                class="ml-4 px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition">
+                Исходный код сайта
+            </a>
+        </p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navIndicator = document.querySelector(".nav-indicator");
+            const navItems = document.querySelectorAll(".nav-item");
+
+            function updateIndicator(element) {
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const parentRect = element.parentElement.getBoundingClientRect();
+                    navIndicator.style.width = `${rect.width}px`;
+                    navIndicator.style.left = `${rect.left - parentRect.left}px`;
+                }
+            }
+
+            // Устанавливаем полоску под активную страницу
+            const activeItem = document.querySelector(".nav-item.active");
+            updateIndicator(activeItem);
+
+            // Двигаем полоску при наведении
+            navItems.forEach(item => {
+                item.addEventListener("mouseenter", () => updateIndicator(item));
+            });
+
+            // Возвращаем полоску на активный элемент
+            document.querySelector(".nav-wrapper").addEventListener("mouseleave", () => {
+                updateIndicator(activeItem);
+            });
+        });
+    </script>
+
 </body>
 </html>

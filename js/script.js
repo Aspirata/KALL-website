@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { 
             name: "TheRig", 
             description: "Простой, но функциональный риг.", 
-            creator: [{ name: "TheRatmir", link: "" }],
+            creator: [{ name: "TheRatmir", link: "https://www.youtube.com/@TheRatmir42" }],
             tags: ["Mixed"], 
             download: "https://theratmir.gumroad.com/l/TheRig"
         },
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "ZAMination Rig",
             description: "Абоба",
             creator: [{ name: "ZAM", link: "https://www.youtube.com/@ThomasAnimations" }],
-            tags: ["Realistic"],
+            tags: ["Realistic", "Устаревший"],
             download: "https://youtu.be/kCCyZ53HubE?si=IIoaQZUAmJowbQ6I"
         },
         {
@@ -93,6 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
             tags: ["Realistic"],
             download: "https://youtu.be/PbjNaT1EVXQ?si=bUiKhVCeaFYQt6Zz"
         },
+        {
+            name: "Smooth Stone EndEdit R4",
+            description: "Абоба",
+            creator: [{ name: "Edertainer007", link: "http://endertainer007.carrd.co/" }, { name: "DarthLilo", link: "https://darthlilo.carrd.co/" }],
+            tags: ["Устаревший", "Realistic"],
+            download: "https://youtu.be/v70wzfgUejs?si=7x8PeM8hB0tApzxX"
+        }
 
     ];
 
@@ -141,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rigCard.dataset.folder = rigFolder;
 
             rigCard.innerHTML = `
-                ${rig.tags.includes("Популярный") ? '<div class="popular-label">Популярен</div>' : ''}
+                ${rig.tags.includes("Популярный") ? '<div class="popular-label">Популярный</div>' : ''}
                 <div class="rig-image-wrapper">
                     <img class="rig-image" alt="${rig.name}" style="display: none;">
                 </div>
