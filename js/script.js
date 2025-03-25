@@ -109,9 +109,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderRigs(filteredRigs) {
         container.innerHTML = '';
 
-        const sortedRigs = [...filteredRigs].sort((a, b) => 
-            (b.tags.includes("Популярный") ? 1 : 0) - (a.tags.includes("Популярный") ? 1 : 0)
-        );
+        const sortedRigs = [...filteredRigs].sort((a, b) => {
+            const aPopular = a.tags.includes("Популярный");
+            const bPopular = b.tags.includes("Популярный");
+            const aOutdated = a.tags.includes("Устаревший");
+            const bOutdated = b.tags.includes("Устаревший");
+
+            // Популярные риги идут первыми
+            if (aPopular && !bPopular) return -1;
+            if (!aPopular && bPopular) return 1;
+
+            // Обычные риги сортируются по алфавиту
+            if (!aOutdated && !bOutdated) return a.name.localeCompare(b.name);
+
+            // Устаревшие риги идут последними
+            if (aOutdated && !bOutdated) return 1;
+            if (!aOutdated && bOutdated) return -1;
+
+            return a.name.localeCompare(b.name);
+        });
 
         for (const rig of sortedRigs) {
             const rigFolder = `rigs/${rig.name}`;
