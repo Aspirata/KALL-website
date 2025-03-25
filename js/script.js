@@ -106,28 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const container = document.querySelector('.rig-container');
 
-    function checkImageExists(url) {
-        return new Promise(resolve => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = url;
-        });
-    }
-
-    async function hasAdditionalImages(folder) {
-        for (let i = 1; i <= 10; i++) {
-            if (await checkImageExists(`${folder}/${i}.png`)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    async function renderRigs(filteredRigs) {
+    function renderRigs(filteredRigs) {
         container.innerHTML = '';
 
-        // Сортируем риги: сначала "Популярные"
         const sortedRigs = [...filteredRigs].sort((a, b) => 
             (b.tags.includes("Популярный") ? 1 : 0) - (a.tags.includes("Популярный") ? 1 : 0)
         );
@@ -135,9 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
         for (const rig of sortedRigs) {
             const rigFolder = `rigs/${rig.name}`;
             const previewPath = `${rigFolder}/preview.png`;
-            const hasPreview = await checkImageExists(previewPath);
-            const imageSrc = hasPreview ? previewPath : 'placeholder_preview.png';
-            const hasGallery = await hasAdditionalImages(rigFolder);
             const detailsPath = rig.details || `${rigFolder}/details.html`;
 
             const creatorHTML = rig.creator.map(c => `<a href="${c.link}" target="_blank">${c.name}</a>`).join(", ");
@@ -149,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rigCard.innerHTML = `
                 ${rig.tags.includes("Популярный") ? '<div class="popular-label">Популярен</div>' : ''}
                 <div class="rig-image-wrapper">
-                    <img src="${imageSrc}" alt="${rig.name}" class="rig-image ${hasGallery ? 'clickable' : ''}">
+                    <img src="placeholder_preview.png" data-src="${previewPath}" alt="${rig.name}" class="rig-image lazy">
                 </div>
                 <div class="p-4">
                     <h3>${rig.name}</h3>
@@ -169,6 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             container.appendChild(rigCard);
         }
+
+        // Отложенная загрузка изображений
+        document.querySelectorAll('.lazy').forEach(img => {
+            const tempImg = new Image();
+            tempImg.src = img.dataset.src;
+            tempImg.onload = () => { img.src = img.dataset.src; };
+        });
     }
 
     function getTagClass(tag) {
@@ -185,32 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return descriptions[tag] || "";
     }
 
-    function openGallery(baseFolder) {
-        const galleryContainer = document.getElementById("gallery");
-        if (!galleryContainer) return;
-
-        galleryContainer.innerHTML = '';
-
-        for (let i = 1; i <= 10; i++) {
-            const img = document.createElement('img');
-            img.src = `${baseFolder}/${i}.png`;
-            img.className = 'gallery-image';
-            img.onerror = () => img.style.display = 'none';
-            galleryContainer.appendChild(img);
-        }
-
-        document.getElementById("gallery-modal").style.display = "flex";
-    }
-
-    container.addEventListener('click', (event) => {
-        const rigCard = event.target.closest('.rig-card');
-        if (!rigCard) return;
-
-        if (event.target.classList.contains('clickable')) {
-            openGallery(rigCard.dataset.folder);
-        }
-    });
-
     function searchRigs() {
         const query = searchInput.value.toLowerCase();
         const filtered = rigs.filter(rig => 
@@ -221,10 +180,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     searchInput.addEventListener('input', searchRigs);
     renderRigs(rigs);
-
-    document.getElementById('close-gallery').addEventListener('click', () => {
-        document.getElementById("gallery-modal").style.display = "none";
-    });
 
     document.addEventListener('click', (event) => {
         if (event.target.classList.contains('tag')) {
