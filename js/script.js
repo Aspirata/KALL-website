@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             rigCard.innerHTML = `
                 ${rig.tags.includes("Популярный") ? '<div class="popular-label">Популярен</div>' : ''}
                 <div class="rig-image-wrapper">
-                    <img src="placeholder_preview.png" data-src="${previewPath}" alt="${rig.name}" class="rig-image lazy">
+                    <img class="rig-image" alt="${rig.name}" style="display: none;">
                 </div>
                 <div class="p-4">
                     <h3>${rig.name}</h3>
@@ -146,14 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             container.appendChild(rigCard);
-        }
 
-        // Отложенная загрузка изображений
-        document.querySelectorAll('.lazy').forEach(img => {
+            // Загружаем изображение и показываем его только после загрузки
+            const imgElement = rigCard.querySelector('.rig-image');
             const tempImg = new Image();
-            tempImg.src = img.dataset.src;
-            tempImg.onload = () => { img.src = img.dataset.src; };
-        });
+            tempImg.src = previewPath;
+            
+            tempImg.onload = () => {
+                imgElement.src = previewPath;
+                imgElement.style.display = "block"; // Показываем картинку только после загрузки
+            };
+            
+            tempImg.onerror = () => {
+                console.warn(`Не удалось загрузить превью для ${rig.name}, используем placeholder.`);
+                imgElement.src = "placeholder_preview.png";
+                imgElement.style.display = "block"; // Показываем placeholder
+            };
+        }
     }
 
     function getTagClass(tag) {
