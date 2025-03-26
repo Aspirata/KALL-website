@@ -182,10 +182,6 @@ header {
     object-fit: cover;
 }
 
-.rig-image.clickable {
-    cursor: pointer;
-}
-
 .rig-description {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -207,6 +203,16 @@ header {
     cursor: pointer;
     transition: transform 0.3s ease;
     position: relative;
+}
+
+.tag-description {
+    margin-top: 4px;
+    padding: 5px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    max-width: 200px;
 }
 
 .tag:hover {

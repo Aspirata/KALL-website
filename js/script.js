@@ -1,221 +1,118 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const rigs = [
-        { 
-            name: "SRE", 
-            description: "Риг с множеством функций, но с багами", 
-            creator: [{ name: "Aspirata", link: "https://aspirata.carrd.co/" }],
-            tags: ["Популярный", "Устаревший", "Mixed"], 
-            download: "https://aspirata.gumroad.com/l/SRE"
-        },
-        { 
-            name: "Bubble Rig", 
-            description: "Абоба", 
-            creator: [{ name: "Alumio", link: "https://alumio.net/" }],
-            tags: ["Simple"], 
-            download: "https://discord.com/invite/FgHEWpCkzB",
-            details: "https://bubblerig.net/"
-        },
-        { 
-            name: "Zipi Rig", 
-            description: "Абоба", 
-            creator: [{ name: "Zipi", link: "" }],
-            tags: ["Realistic"], 
-            download: "rigs/Zipi Rig/ZipiRig.zip"
-        },
-        { 
-            name: "Ice Cube", 
-            description: "Абоба", 
-            creator: [{ name: "DarthLilo", link: "https://darthlilo.carrd.co/" }],
-            tags: ["Популярный", "Realistic"], 
-            download: "https://github.com/DarthLilo/ice_cube/releases/latest"
-        },
-        { 
-            name: "MCS Rig", 
-            description: "Абоба", 
-            creator: [{ name: "Endertainer007", link: "http://endertainer007.carrd.co/" }],
-            tags: ["Realistic"], 
-            download: "https://endertainer007.gumroad.com/l/EndRig_MCS2?layout=profile"
-        },
-        { 
-            name: "Simple Rig", 
-            description: "Абоба", 
-            creator: [{ name: "Digital Dan Animations", link: "https://digitaldananimations.gumroad.com" }],
-            tags: ["Популярный", "Simple"], 
-            download: "https://digitaldananimations.gumroad.com/l/fjvmt"
-        },
-        { 
-            name: "TheRig", 
-            description: "Простой, но функциональный риг.", 
-            creator: [{ name: "TheRatmir", link: "https://www.youtube.com/@TheRatmir42" }],
-            tags: ["Mixed"], 
-            download: "https://theratmir.gumroad.com/l/TheRig"
-        },
-        {
-            name: "Promo Rig",
-            description: "Абоба",
-            creator: [{ name: "Azagwen", link: "https://azagwen.art/" }],
-            tags: ["Simple"],
-            download: "https://azagwen.gumroad.com/l/skEOo?layout=profile&recommended_by=library"
-        },
-        {
-            name: "Endertainer Rig Remastered",
-            description: "Абоба",
-            creator: [{ name: "Endertainer007", link: "http://endertainer007.carrd.co/" }],
-            tags: ["Устаревший", "Mixed"],
-            details: "https://youtu.be/SgMcWIkkPSk?si=6tlIyscsXJmnqFd4",
-            download: "https://archive.org/details/EndRig_R1_R1_RM"
-        },
-        {
-            name: "Thomas Rig Legacy",
-            description: "Абоба",
-            creator: [{ name: "BlueEvil", link: "https://youtube.com/@blueevilgfx" }, { name: "Thomas", link: "https://www.youtube.com/@ThomasAnimations" }],
-            tags: ["Realistic"],
-            download: "https://extensions.blender.org/add-ons/thomas-rig-legacy/"
-        },
-        {
-            name: "Thomas Rig",
-            description: "Абоба",
-            creator: [{ name: "Thomas", link: "https://www.youtube.com/@ThomasAnimations" }],
-            tags: ["Realistic"],
-            download: "https://youtu.be/2yn5I9B0Im4?si=MvQyVqh3P7tJtiwy"
-        },
-        {
-            name: "ZAMination Rig",
-            description: "Абоба",
-            creator: [{ name: "ZAM", link: "https://www.youtube.com/@ThomasAnimations" }],
-            tags: ["Устаревший", "Realistic",],
-            download: "https://youtu.be/kCCyZ53HubE?si=IIoaQZUAmJowbQ6I"
-        },
-        {
-            name: "Wasabi Rig",
-            description: "Абоба",
-            creator: [{ name: "Gumbo", link: "" }],
-            tags: ["Realistic"],
-            download: "https://youtu.be/PbjNaT1EVXQ?si=bUiKhVCeaFYQt6Zz"
-        },
-        {
-            name: "Smooth Stone EndEdit R4",
-            description: "Абоба",
-            creator: [{ name: "Edertainer007", link: "http://endertainer007.carrd.co/" }, { name: "DarthLilo", link: "https://darthlilo.carrd.co/" }],
-            tags: ["Устаревший", "Realistic"],
-            download: "https://youtu.be/v70wzfgUejs?si=7x8PeM8hB0tApzxX"
-        }
-
-    ];
-
-    const tagClasses = {
-        "Популярный": "tag tag-popular",
-        "Устаревший": "tag tag-outdated",
-        "Simple": "tag tag-simple",
-        "Realistic": "tag tag-realistic"
-    };
-
     const searchInput = document.getElementById('searchInput');
     const container = document.querySelector('.rig-container');
 
-    function renderRigs(filteredRigs) {
+    let activeTag = null; // Хранит текущий активный тег
+
+    const tagInfo = {
+        "Популярный": { class: "tag tag-popular", desc: "Риг, который используется многими пользователями" },
+        "Устаревший": { class: "tag tag-outdated", desc: "Риг работает некорректно на новых версиях Blender" },
+        "Mixed": { class: "tag tag-mixed", desc: "Риг со смешанным стилем" },
+        "Simple": { class: "tag tag-simple", desc: "Риг в Simple (Mojang) Стиле" },
+        "Realistic": { class: "tag tag-realistic", desc: "Риг в Realistic Стиле" },
+    };
+
+    function fetchRigs() {
+        fetch('rigs.json')
+            .then(response => response.json())
+            .then(renderRigs)
+            .catch(error => console.error('Ошибка загрузки ригов:', error));
+    }
+
+    function renderRigs(rigs) {
         container.innerHTML = '';
 
-        const sortedRigs = [...filteredRigs].sort((a, b) => {
-            const aPopular = a.tags.includes("Популярный");
-            const bPopular = b.tags.includes("Популярный");
-            const aOutdated = a.tags.includes("Устаревший");
-            const bOutdated = b.tags.includes("Устаревший");
-
-            // Популярные риги идут первыми
-            if (aPopular && !bPopular) return -1;
-            if (!aPopular && bPopular) return 1;
-
-            // Обычные риги сортируются по алфавиту
-            if (!aOutdated && !bOutdated) return a.name.localeCompare(b.name);
-
-            // Устаревшие риги идут последними
-            if (aOutdated && !bOutdated) return 1;
-            if (!aOutdated && bOutdated) return -1;
-
-            return a.name.localeCompare(b.name);
-        });
+        const sortedRigs = rigs.sort((a, b) => {
+            const popA = a.tags.includes("Популярный") ? -1 : 0;
+            const popB = b.tags.includes("Популярный") ? -1 : 0;
+            const oldA = a.tags.includes("Устаревший") ? 1 : 0;
+            const oldB = b.tags.includes("Устаревший") ? 1 : 0;
+        
+            return popA - popB || oldA - oldB || a.name.localeCompare(b.name);
+        });        
 
         for (const rig of sortedRigs) {
-            const rigFolder = `rigs/${rig.name}`;
-            const previewPath = `${rigFolder}/preview.webp`;
-            const detailsPath = rig.details || `${rigFolder}/details.html`;
+            const folder = `rigs/${rig.name}`;
+            const previewPath = `${folder}/preview.webp`;
+            const detailsLink = rig.details ? `<a href="${rig.details}" class="read-more">Подробнее...</a>` : "";
 
-            const creatorHTML = rig.creator.map(c => `<a href="${c.link}" target="_blank">${c.name}</a>`).join(", ");
+            // Проверка количества создателей
+            const creators = rig.creator.map(c => `<a href="${c.link}" target="_blank">${c.name}</a>`).join(", ");
+            const creatorsLabel = rig.creator.length > 1 ? "Создатели" : "Создатель";
 
             const rigCard = document.createElement('div');
-            rigCard.className = `rig-card hover:scale-105 transition-all ${rig.tags.includes("Популярный") ? 'popular' : ''}`;
-            rigCard.dataset.folder = rigFolder;
-
+            rigCard.className = `rig-card ${rig.tags.includes("Популярный") ? 'popular' : ''}`;
             rigCard.innerHTML = `
                 ${rig.tags.includes("Популярный") ? '<div class="popular-label">Популярный</div>' : ''}
                 <div class="rig-image-wrapper">
-                    <img class="rig-image" alt="${rig.name}" style="display: none;">
+                    <img class="rig-image" alt="${rig.name}" src="placeholder_preview.webp" loading="lazy">
                 </div>
                 <div class="p-4">
                     <h3>${rig.name}</h3>
                     <div class="info-tags">
-                        <p class="creator-info">Создатель: ${creatorHTML}</p>
+                        <p class="creator-info">${creatorsLabel}: ${creators}</p>
                         <p class="description-info">
-                            Описание: ${rig.description} 
-                            <a href="${detailsPath}" class="read-more">Подробнее...</a>
+                            Описание: ${rig.description} ${detailsLink}
                         </p>
                     </div>
                     <div class="tags">
-                        ${rig.tags.map(tag => `<span class="${getTagClass(tag)}" data-description="${getTagDescription(tag)}">${tag}</span>`).join('')}
+                        ${rig.tags.map(tag => {
+                            const info = tagInfo[tag] || { class: "tag", desc: "" };
+                            return `<span class="${info.class}" data-description="${info.desc}">${tag}</span>`;
+                        }).join('')}
                     </div>
                     <a href="${rig.download}" class="btn download w-full block text-center">Скачать</a>
                 </div>
             `;
 
-            container.appendChild(rigCard);
-
-            // Загружаем изображение и показываем его только после загрузки
+            // Загружаем картинку только если она есть
             const imgElement = rigCard.querySelector('.rig-image');
             const tempImg = new Image();
             tempImg.src = previewPath;
-            
-            tempImg.onload = () => {
-                imgElement.src = previewPath;
-                imgElement.style.display = "block"; // Показываем картинку только после загрузки
-            };
-            
-            tempImg.onerror = () => {
-                console.warn(`Не удалось загрузить превью для ${rig.name}, используем placeholder.`);
-                imgElement.src = "placeholder_preview.webp";
-                imgElement.style.display = "block"; // Показываем placeholder
-            };
+            tempImg.onload = () => imgElement.src = previewPath;
+
+            container.appendChild(rigCard);
         }
-    }
-
-    function getTagClass(tag) {
-        return tagClasses[tag] || "tag";
-    }
-
-    function getTagDescription(tag) {
-        const descriptions = {
-            "Simple": "Легкий риг с базовыми функциями",
-            "Realistic": "Риг с детализированной анимацией",
-            "Популярный": "Риг, который используется многими",
-            "Устаревший": "Риг больше не обновляется"
-        };
-        return descriptions[tag] || "";
     }
 
     function searchRigs() {
         const query = searchInput.value.toLowerCase();
-        const filtered = rigs.filter(rig => 
-            rig.name.toLowerCase().includes(query) || rig.tags.some(tag => tag.toLowerCase().includes(query))
-        );
-        renderRigs(filtered);
+        fetch('/rigs.json')
+            .then(response => response.json())
+            .then(rigs => renderRigs(rigs.filter(rig => 
+                rig.name.toLowerCase().includes(query) || 
+                rig.tags.some(tag => tag.toLowerCase().includes(query))
+            )));
     }
 
-    searchInput.addEventListener('input', searchRigs);
-    renderRigs(rigs);
+    // Обработчик кликов по тегам
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('tag')) {
+            const tagElement = e.target;
+            const description = tagElement.dataset.description;
 
-    document.addEventListener('click', (event) => {
-        if (event.target.classList.contains('tag')) {
-            event.target.classList.toggle('tag-expanded');
+            // Если кликнули по активному тегу, скрываем описание
+            if (activeTag === tagElement) {
+                tagElement.nextElementSibling?.remove();
+                activeTag = null;
+                return;
+            }
+
+            // Удаляем предыдущее описание, если оно было
+            document.querySelector('.tag-description')?.remove();
+
+            // Создаем элемент для описания
+            const descriptionElement = document.createElement('div');
+            descriptionElement.className = 'tag-description';
+            descriptionElement.textContent = description;
+
+            // Вставляем после тега
+            tagElement.insertAdjacentElement('afterend', descriptionElement);
+            activeTag = tagElement;
         }
     });
+
+    searchInput.addEventListener('input', searchRigs);
+
+    fetchRigs();
 });
