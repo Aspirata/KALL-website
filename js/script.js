@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "ZAMination Rig",
             description: "Абоба",
             creator: [{ name: "ZAM", link: "https://www.youtube.com/@ThomasAnimations" }],
-            tags: ["Realistic", "Устаревший"],
+            tags: ["Устаревший", "Realistic",],
             download: "https://youtu.be/kCCyZ53HubE?si=IIoaQZUAmJowbQ6I"
         },
         {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (const rig of sortedRigs) {
             const rigFolder = `rigs/${rig.name}`;
-            const previewPath = `${rigFolder}/preview.png`;
+            const previewPath = `${rigFolder}/preview.webp`;
             const detailsPath = rig.details || `${rigFolder}/details.html`;
 
             const creatorHTML = rig.creator.map(c => `<a href="${c.link}" target="_blank">${c.name}</a>`).join(", ");
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="creator-info">Создатель: ${creatorHTML}</p>
                         <p class="description-info">
                             Описание: ${rig.description} 
-                            <a href="${detailsPath}" class="read-more">Читать далее...</a>
+                            <a href="${detailsPath}" class="read-more">Подробнее...</a>
                         </p>
                     </div>
                     <div class="tags">
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             tempImg.onerror = () => {
                 console.warn(`Не удалось загрузить превью для ${rig.name}, используем placeholder.`);
-                imgElement.src = "placeholder_preview.png";
+                imgElement.src = "placeholder_preview.webp";
                 imgElement.style.display = "block"; // Показываем placeholder
             };
         }
