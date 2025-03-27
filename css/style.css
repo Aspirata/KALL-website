@@ -1,5 +1,10 @@
-body {
-    font-family: 'Inter', sans-serif;
+@font-face {
+    font-family: 'Minecraft';
+    src: url('/minecraft.ttf') format('truetype');
+}
+
+html, body {
+    font-family: 'Minecraft', sans-serif;
     background: #121212;
     color: #e0e0e0;
     display: flex;
