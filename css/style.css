@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Minecraft';
-    src: url('/minecraft.woff') format('truetype');
+    src: url('/minecraft.woff') format('woff');
 }
 
 html, body {
@@ -10,7 +10,6 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    position: relative;
 }
 
 h1 {
@@ -23,7 +22,42 @@ header {
     padding: 3rem;
     background: linear-gradient(45deg, #1e3a8a, #047857);
     border-radius: 0 0 20px 20px;
+}
+
+/* Стили навигации */
+.nav-container {
     position: relative;
+    display: flex;
+    gap: 20px;
+    padding-bottom: 6px;
+}
+
+.nav-item {
+    position: relative;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+/* Двигающаяся линия */
+.nav-indicator {
+    position: absolute;
+    bottom: -2px;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease-in-out;
+    width: 0;
+    left: 0;
+}
+
+/* Стиль для активной страницы */
+.nav-item.active .nav-link {
+    font-weight: 700;
+    color: white;
 }
 
 #aboutButton {
@@ -92,7 +126,7 @@ header {
 .rig-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
-    gap: 15px; /* Уменьшено расстояние между карточками */
+    gap: 15px;
     justify-content: center;
     padding: 20px;
 }
@@ -106,7 +140,7 @@ header {
     background: #222;
     border-radius: 10px;
     transition: transform 0.3s ease;
-    padding-bottom: 50px; /* Добавим пространство для кнопки */
+    padding-bottom: 50px;
 }
 
 .rig-card:hover {
@@ -133,15 +167,13 @@ header {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    overflow: hidden; /* Предотвращаем артефакты */
 }
 
-/* Скрываем кнопку по умолчанию (ниже экрана) */
 .download {
     position: absolute;
-    bottom: -60px; /* Вместо -100% фиксированное значение */
+    bottom: -60px;
     left: 50%;
-    transform: translate(-50%, 20px); /* Смещаем вниз */
+    transform: translate(-50%, 20px);
     opacity: 0;
     transition: transform 0.25s ease-out, opacity 0.25s ease-out;
     background: linear-gradient(45deg, #10b981, #34d399);
@@ -157,7 +189,7 @@ header {
 
 /* Выдвигаем кнопку при наведении */
 .rig-card:hover .download {
-    transform: translate(-50%, 0); /* Поднимаем */
+    transform: translate(-50%, 0);
     opacity: 1;
     bottom: -2px;
 }
@@ -169,8 +201,8 @@ header {
 
 .popular-label {
     position: absolute;
-    top: -5px; /* Поднимаем над карточкой */
-    left: -5px; /* Смещаем влево */
+    top: -5px;
+    left: -5px;
     background: gold;
     color: black;
     font-weight: bold;
@@ -196,7 +228,7 @@ header {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px; /* Уменьшено расстояние между тегами */
+    gap: 8px;
 }
 
 .tag {
@@ -210,21 +242,10 @@ header {
     position: relative;
 }
 
-.tag-description {
-    margin-top: 4px;
-    padding: 5px;
-    background: #f0f0f0;
-    border-radius: 5px;
-    font-size: 14px;
-    color: #333;
-    max-width: 200px;
-}
-
 .tag:hover {
-    transform: scale(1.05); /* Легкий эффект при наведении */
+    transform: scale(1.05);
 }
 
-/* Добавление стиля для устаревшего тега */
 .tag-popular {
     background-color: #f0a500;
 }
@@ -235,53 +256,4 @@ header {
 
 .tag-recommended {
     background-color: #00bcd4;
-}
-
-/* Появление описания тега */
-.tag-expanded::after {
-    content: attr(data-description);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.85rem;
-    max-width: 250px;
-    white-space: normal; /* Описание теперь может занимать несколько строк */
-    text-align: center;
-    display: block;
-}
-
-/* Плавный переход для появления панели с пояснением тега */
-.tag-popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    max-width: 500px;
-    z-index: 1000;
-}
-
-.tag-popup p {
-    margin: 0;
-    font-size: 1rem;
-}
-
-/* Затемнение фона при открытой панели */
-.tag-popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 999;
 }

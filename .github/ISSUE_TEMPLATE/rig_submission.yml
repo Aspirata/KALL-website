@@ -6,7 +6,7 @@ body:
     id: rig_name
     attributes:
       label: "Название рига"
-      placeholder: "Введите название рига"
+      placeholder: "Например, Abobus Rig"
     validations:
       required: true
   
@@ -14,23 +14,25 @@ body:
     id: creator
     attributes:
       label: "Создатель(и) рига и ссылка на него(них)"
-      placeholder: "Введите имя автора и ссылку (если есть)"
-    validations:
-      required: true
-  
-  - type: input
-    id: preview_image
-    attributes:
-      label: "Картинка для превью рига"
-      placeholder: "Добавьте ссылку на изображение"
+      placeholder: "Например, Aspirata (https://ya/pos.ral)"
     validations:
       required: true
   
   - type: textarea
+    id: preview_image
+    attributes:
+      label: "Картинка для превью рига"
+      description: "Перетащите изображение сюда или укажите на него ссылку"
+      placeholder: "Ну тут примера нету"
+    validations:
+      required: true
+
+  - type: textarea
     id: description
     attributes:
       label: "Краткое описание"
-      placeholder: "Опишите риг в нескольких предложениях"
+      description: "Опишите риг в нескольких предложениях"
+      placeholder: "Например, этот риг идеально подходит как для начинающих, так и для опытных аниматоров, он оснащен множеством функций для улучшения ваших творческих проектов."
     validations:
       required: true
   
@@ -38,7 +40,8 @@ body:
     id: tags
     attributes:
       label: "Теги"
-      placeholder: "Введите теги через запятую"
+      description: "Введите теги через запятую"
+      placeholder: "Например, Simple, Популярный, Устаревший, Калл"
     validations:
       required: true
   
@@ -46,6 +49,6 @@ body:
     id: download_link
     attributes:
       label: "Ссылка на скачивание"
-      placeholder: "Введите ссылку на файл"
+      placeholder: "Например, https://aspirata.gumroad.com/l/SRE"
     validations:
       required: true
