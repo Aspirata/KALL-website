@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Minecraft';
-    src: url('/minecraft.woff') format('woff');
+    src: url('../minecraft.woff') format('woff');
 }
 
 html, body {
