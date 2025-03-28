@@ -1,31 +1,31 @@
-[ 
+[
     { 
         "name": "SRE", 
         "description": "Риг с большим количеством функций, но и багов там столько же.", 
         "creator": [{ "name": "Aspirata", "link": "https://aspirata.carrd.co/" }],
-        "tags": ["Популярный", "Устаревший", "Mixed"], 
+        "tags": ["Популярный", "Устаревший", "Смешанный", "Продвинутая функциональность"], 
         "download": "https://aspirata.gumroad.com/l/SRE"
     },
     { 
         "name": "Bubble Rig", 
         "description": "Риг, цель которого - сделать анимацию проще для новичков, а также для промежуточных и продвинутых аниматоров.", 
         "creator": [{ "name": "Alumio", "link": "https://alumio.net/" }],
-        "tags": ["Simple"], 
+        "tags": ["Mojang", "Лёгкий для изменения модели", "Достаточная функциональность"], 
         "download": "https://discord.com/invite/FgHEWpCkzB",
         "details": "https://bubblerig.net/"
     },
     { 
         "name": "Zipi Rig", 
-        "description": "Абоба", 
+        "description": "Говно полное, не пользуйтесь - Zipi", 
         "creator": [{ "name": "Zipi", "link": "" }],
-        "tags": ["Realistic"], 
+        "tags": ["Реалистичный", "Достаточная функциональность"], 
         "download": "https://cdn.discordapp.com/attachments/1118949576678846485/1351230539767742464/Zipi_rig.rar?ex=67e4d3c1&is=67e38241&hm=e205174fa959730e8735fe3e95e9a6aab4fb8b15886d12ee72a5460587176a35&"
     },
     {
         "name": "Ice Cube", 
         "description": "Риг сделанный так, чтобы быть настолько гибким, функциональным и мощным, насколько это возможно.", 
         "creator": [{ "name": "DarthLilo", "link": "https://darthlilo.carrd.co/" }],
-        "tags": ["Популярный", "Realistic"], 
+        "tags": ["Популярный", "Реалистичный", "Максимальная функциональность"], 
         "details": "https://ice-cube-rig.carrd.co/",
         "download": "https://github.com/DarthLilo/ice_cube/releases/latest"
     },
@@ -33,35 +33,35 @@
         "name": "MCS Rig", 
         "description": "Риг, разработанный с акцентом на простоту и кастомизацию.", 
         "creator": [{ "name": "Endertainer007", "link": "http://endertainer007.carrd.co/" }],
-        "tags": ["Realistic"],
+        "tags": ["Реалистичный", "Лёгкий для изменения модели", "Продвинутая функциональность"],
         "download": "https://endertainer007.gumroad.com/l/EndRig_MCS2?layout=profile"
     },
     { 
         "name": "Simple Rig", 
         "description": "Этот риг - отличный инструмент для тех, кто пытается влиться в создание майнкрафт контента в блендере.", 
         "creator": [{ "name": "Digital Dan Animations", "link": "https://digitaldananimations.gumroad.com" }],
-        "tags": ["Популярный", "Simple"], 
+        "tags": ["Популярный", "Mojang", "Минимальная функциональность"], 
         "download": "https://digitaldananimations.gumroad.com/l/fjvmt"
     },
     { 
         "name": "TheRig", 
         "description": "Простой, но функциональный риг.", 
         "creator": [{ "name": "TheRatmir", "link": "https://www.youtube.com/@TheRatmir42" }],
-        "tags": ["Mixed"], 
+        "tags": ["Смешанный", "Достаточная функциональность"], 
         "download": "https://theratmir.gumroad.com/l/TheRig"
     },
     {
         "name": "Promo Rig",
         "description": "Самый простой и устойчивый к поломкам риг. В нём минимум всего из-за чего он будет работать даже в Blender 6.0",
         "creator": [{ "name": "Azagwen", "link": "https://azagwen.art/" }],
-        "tags": ["Simple"],
+        "tags": ["Mojang", "Минимальная функциональность"],
         "download": "https://azagwen.gumroad.com/l/skEOo?layout=profile&recommended_by=library"
     },
     {
         "name": "Endertainer Rig Remastered",
         "description": "Абоба",
         "creator": [{ "name": "Endertainer007", "link": "http://endertainer007.carrd.co/" }],
-        "tags": ["Устаревший", "Mixed"],
+        "tags": ["Устаревший", "Смешанный", "Лёгкий для изменения модели", "Продвинутая функциональность"],
         "details": "https://youtu.be/SgMcWIkkPSk?si=6tlIyscsXJmnqFd4",
         "download": "https://archive.org/details/EndRig_R1_R1_RM"
     },
@@ -69,14 +69,14 @@
         "name": "Thomas Rig Legacy",
         "description": "Этот риг идеально подходит как для начинающих, так и для опытных аниматоров, он оснащен множеством функций для улучшения ваших творческих проектов.",
         "creator": [{ "name": "BlueEvil", "link": "https://youtube.com/@blueevilgfx" }, { "name": "Thomas", "link": "https://www.youtube.com/@ThomasAnimations" }],
-        "tags": ["Realistic"],
+        "tags": ["Реалистичный", "Продвинутая функциональность"],
         "download": "https://extensions.blender.org/add-ons/thomas-rig-legacy/"
     },
     {
         "name": "Thomas Rig",
         "description": "Абоба",
         "creator": [{ "name": "Thomas", "link": "https://www.youtube.com/@ThomasAnimations" }],
-        "tags": ["Realistic"],
+        "tags": ["Реалистичный", "Минимальная функциональность"],
         "details": "https://youtu.be/2yn5I9B0Im4?si=MvQyVqh3P7tJtiwy",
         "download": "https://drive.google.com/drive/folders/14_k6si7hxxW9JVDg9iqj14vn2Fy-xbt5"
     },
@@ -84,21 +84,21 @@
         "name": "ZAMination Rig",
         "description": "Абоба",
         "creator": [{ "name": "ZAM", "link": "https://www.youtube.com/@ThomasAnimations" }],
-        "tags": ["Устаревший", "Realistic"],
+        "tags": ["Устаревший", "Реалистичный", "Достаточная функциональность"],
         "download": "https://youtu.be/kCCyZ53HubE?si=IIoaQZUAmJowbQ6I"
     },
     {
         "name": "Wasabi Rig",
         "description": "Абоба",
         "creator": [{ "name": "Gumbo", "link": "" }],
-        "tags": ["Realistic"],
+        "tags": ["Реалистичный", "Продвинутая функциональность"],
         "download": "https://youtu.be/PbjNaT1EVXQ?si=bUiKhVCeaFYQt6Zz"
     },
     {
         "name": "Smooth Stone EndEdit R4",
         "description": "Совершенство - это красота. Но красота не всегда требует совершенства",
         "creator": [{ "name": "Edertainer007", "link": "http://endertainer007.carrd.co/" }, { "name": "DarthLilo", "link": "https://darthlilo.carrd.co/" }],
-        "tags": ["Устаревший", "Realistic"],
+        "tags": ["Устаревший", "Реалистичный", "Максимальная функциональность"],
         "details": "https://youtu.be/v70wzfgUejs?si=7x8PeM8hB0tApzxX",
         "download": "https://archive.org/details/SS_EndEdit"
     },
@@ -106,7 +106,7 @@
         "name": "IPR",
         "description": "Абоба",
         "creator": [{ "name": "Indernob", "link": "https://x.com/Indernob" }],
-        "tags": ["Realistic"],
+        "tags": ["Реалистичный", "Лёгкий для изменения модели", "Продвинутая функциональность"],
         "download": "https://cdn.discordapp.com/attachments/1168035546547896481/1209975585661779978/I.P.R_Blender4-0.rar?ex=67e47213&is=67e32093&hm=3dbebe55ceffd4057f2ad66b78538c89fc3b4bb8794c3f5a85ab40733292697a&"
     }
 ]

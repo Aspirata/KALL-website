@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Minecraft';
-    src: url('../minecraft.woff') format('woff');
+    src: url('../other/minecraft.woff') format('woff');
 }
 
 html, body {
@@ -242,18 +242,89 @@ header {
     position: relative;
 }
 
+.tag-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1000;
+    pointer-events: none;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.filter-tag {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, opacity 0.2s;
+}
+
 .tag:hover {
     transform: scale(1.05);
 }
 
+.tag-default {
+    background: #374151;
+    color: #f0f0f0;
+}
+
 .tag-popular {
-    background-color: #f0a500;
+    background: #ffcc00;
+    color: #000;
 }
-
 .tag-outdated {
-    background-color: #e74c3c;
+    background: #ff6347;
+    color: #fff;
 }
 
-.tag-recommended {
-    background-color: #00bcd4;
+.tag-mixed {
+    background: linear-gradient(45deg, #32cd32, #1e90ff);
+    color: #fff;
+}
+
+.tag-mojang {
+    background: #32cd32;
+    color: #fff;
+}
+
+.tag-realistic {
+    background: #1e90ff;
+    color: #fff;
+}
+
+.tag-easy-to-modify {
+    background: #ff8c00;
+    color: #fff;
+}
+
+.tag-minimal {
+    background: #808080;
+    color: #fff;
+}
+
+.tag-sufficient {
+    background: #4682b4;
+    color: #fff;
+}
+
+.tag-advanced {
+    background: #8b0000;
+    color: #fff;
+}
+
+.tag-maximum {
+    background: #ff4500;
+    color: #fff;
+}
+
+.filter-tag.active-filter {
+    outline: 3px solid rgb(255, 255, 255);
 }
