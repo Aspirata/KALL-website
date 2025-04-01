@@ -4,7 +4,7 @@
         "description": "Риг с большим количеством функций, но и багов там столько же.", 
         "creator": [{ "name": "Aspirata", "link": "https://aspirata.carrd.co/" }],
         "tags": ["Популярный", "Устаревший", "Смешанный", "Продвинутая функциональность"], 
-        "download": "https://aspirata.gumroad.com/l/SRE"
+        "download": "https://github.com/Aspirata/Simple-Rig-Edit"
     },
     { 
         "name": "Bubble Rig", 
